@@ -76,13 +76,15 @@
 ;; Auxiliary functions
 
 (defun company-reftex-prefix (regexp)
-  "Returns the prefix for matching given REGEXP."
+  "Return the prefix for matching given REGEXP."
   (and (derived-mode-p 'latex-mode)
        reftex-mode
        (when (looking-back regexp nil)
          (match-string-no-properties 1))))
 
 (defun company-reftex-annotate (key annotation)
+  "Annotate KEY with ANNOTATION if the latter is not nil.
+Obeys the setting of `company-reftex-max-annotation-length'."
   (cond
    ((not annotation) key)
    ((not company-reftex-max-annotation-length)
@@ -95,6 +97,7 @@
 ;; Citations
 
 (defun company-reftex-citation-candidates (prefix)
+  "Find all citation candidates matching PREFIX."
   (reftex-access-scan-info)
   ;; Reftex will ask for a regexp by using `completing-read'
   ;; Override this programatically with a regexp from the prefix
@@ -125,6 +128,8 @@
 
 ;;;###autoload
 (defun company-reftex-citations (command &optional arg &rest _)
+  "Company backend for LaTeX citations, powered by reftex.
+For more information on COMMAND and ARG see `company-backends'."
   (interactive (list 'interactive))
   (cl-case command
     (interactive (company-begin-backend 'company-reftex-labels))
@@ -140,6 +145,7 @@
 ;; Labels
 
 (defun company-reftex-label-candidates (prefix)
+  "Find all label candidates matching PREFIX."
   (reftex-access-scan-info)
   (cl-loop for entry in (symbol-value reftex-docstruct-symbol)
            if (and (stringp (car entry)) (string-prefix-p prefix (car entry)))
@@ -148,6 +154,8 @@
 
 ;;;###autoload
 (defun company-reftex-labels (command &optional arg &rest _)
+  "Company backend for LaTeX labels, powered by reftex.
+For more information on COMMAND and ARG see `company-backends'."
   (interactive (list 'interactive))
   (cl-case command
     (interactive (company-begin-backend 'company-reftex-labels))
