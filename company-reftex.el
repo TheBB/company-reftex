@@ -5,7 +5,7 @@
 ;; Author: Eivind Fonn <evfonn@gmail.com>
 ;; URL: https://github.com/TheBB/company-reftex
 ;; Version: 0.1.0
-;; Keywords: company latex reftex references labels citations
+;; Keywords: bib tex company latex reftex references labels citations
 ;; Package-Requires: ((emacs "25.1") (cl-lib "0.5") (s "1.12") (company "0.8"))
 
 ;; This program is free software; you can redistribute it and/or modify
