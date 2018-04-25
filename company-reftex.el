@@ -133,7 +133,7 @@ For more information on COMMAND and ARG see `company-backends'."
   (interactive (list 'interactive))
   (cl-case command
     (interactive (company-begin-backend 'company-reftex-labels))
-    (prefix (company-reftex-prefix "\\\\cite[^[{]*\\(?:\\[[^]]*\\]\\)?{\\([^},]*\\)\\="))
+    (prefix (company-reftex-prefix "\\\\cite[^[{]*\\(?:\\[[^]]*\\]\\)?{\\(?:[^},]*,\\)*\\([^},]*\\)"))
     (candidates (company-reftex-citation-candidates arg))
     (annotation (when company-reftex-annotate-citations
                   (concat
