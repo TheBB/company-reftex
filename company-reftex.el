@@ -71,6 +71,20 @@
   :type '(choice (const :tag "Off" nil) integer)
   :group 'company-reftex)
 
+(defcustom company-reftex-labels-regexp
+  "\\\\\\(?:eq\\|auto\\)?ref{\\([^}]*\\)\\="
+  "Regular expression to use when lookng for the label prefix.
+Group number 1 should be the prefix itself."
+  :type 'string
+  :group 'company-reftex)
+
+(defcustom company-reftex-citations-regexp
+  "\\\\cite[^[{]*\\(?:\\[[^]]*\\]\\)?{\\(?:[^},]*,\\)*\\([^},]*\\)"
+  "Regular expression to use when lookng for the citation prefix.
+Group number 1 should be the prefix itself."
+  :type 'string
+  :group 'company-reftex)
+
 
 
 ;; Auxiliary functions
@@ -133,7 +147,7 @@ For more information on COMMAND and ARG see `company-backends'."
   (interactive (list 'interactive))
   (cl-case command
     (interactive (company-begin-backend 'company-reftex-labels))
-    (prefix (company-reftex-prefix "\\\\cite[^[{]*\\(?:\\[[^]]*\\]\\)?{\\(?:[^},]*,\\)*\\([^},]*\\)"))
+    (prefix (company-reftex-prefix company-reftex-citations-regexp))
     (candidates (company-reftex-citation-candidates arg))
     (annotation (when company-reftex-annotate-citations
                   (concat
@@ -159,7 +173,7 @@ For more information on COMMAND and ARG see `company-backends'."
   (interactive (list 'interactive))
   (cl-case command
     (interactive (company-begin-backend 'company-reftex-labels))
-    (prefix (company-reftex-prefix "\\\\\\(?:eq\\|auto\\)?ref{\\([^}]*\\)\\="))
+    (prefix (company-reftex-prefix company-reftex-labels-regexp))
     (candidates (company-reftex-label-candidates arg))
     (annotation (when company-reftex-annotate-labels
                   (concat
