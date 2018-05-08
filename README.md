@@ -43,10 +43,3 @@ indeed.
 
 When working with multi-file documents, ensure that the variable `TeX-master` is appropriately set
 in all files, so that RefTeX can find citations across documents.
-
-
-
-
-
-
-
