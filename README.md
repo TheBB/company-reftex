@@ -1,5 +1,7 @@
 # company-reftex
 
+[![MELPA](https://melpa.org/packages/company-reftex-badge.svg)](https://melpa.org/#/company-reftex)
+
 This package provides two backends for [Company](http://company-mode.github.io/) for completing
 label references and citations in LaTeX. It is based on RefTeX, which is included with Emacs.
 
