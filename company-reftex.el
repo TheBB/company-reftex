@@ -78,7 +78,7 @@ Group number 1 should be the prefix itself."
   :group 'company-reftex)
 
 (defcustom company-reftex-citations-regexp
-  "\\\\cite[^[{]*\\(?:\\[[^]]*\\]\\)?{\\(?:[^},]*,\\)*\\([^},]*\\)"
+  "\\\\\\(?:foot\\)?cite[^[{]*\\(?:\\[[^]]*\\]\\)*{\\(?:[^},]*,\\)*\\([^},]*\\)"
   "Regular expression to use when lookng for the citation prefix.
 Group number 1 should be the prefix itself."
   :type 'string
