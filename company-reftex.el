@@ -85,7 +85,9 @@ Group number 1 should be the prefix itself."
 (defcustom company-reftex-citations-regexp
   (rx "\\"
       (or "cite"
-          "footcite")
+          "footcite"
+          "parencite"
+          "textcite")
       (* (not (any "[{")))
       (* (seq "[" (* (not (any "]"))) "]"))
       "{"
