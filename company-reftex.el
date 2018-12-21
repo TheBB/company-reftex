@@ -55,9 +55,10 @@
   :tag "Company RefTeX"
   :group 'company)
 
-(defcustom company-reftex-annotate-citations t
-  "Whether to annotate citations with their titles."
-  :type 'boolean
+(defcustom company-reftex-annotate-citations "%t"
+  "If non-nil, a format string with which to annotate citations.
+See `reftex-format-citation'."
+  :type '(choice string (const nil))
   :group 'company-reftex)
 
 (defcustom company-reftex-annotate-labels t
@@ -136,8 +137,7 @@ Obeys the setting of `company-reftex-max-annotation-length'."
          (company-reftex-annotate
           key
           (when company-reftex-annotate-citations
-            (substring-no-properties
-             (or (cdr (assoc "title" (cdr entry))) "??")))))))))
+            (reftex-format-citation entry company-reftex-annotate-citations))))))))
 
 ;;;###autoload
 (defun company-reftex-citations (command &optional arg &rest _)
