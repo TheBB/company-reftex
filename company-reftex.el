@@ -72,14 +72,25 @@ See `reftex-format-citation'."
   :group 'company-reftex)
 
 (defcustom company-reftex-labels-regexp
-  "\\\\\\(?:eq\\|auto\\)?ref{\\([^}]*\\)\\="
+  (rx "\\"
+      (or "autoref" "eqref" "ref")
+      "{"
+      (group (* (not (any "}"))))
+      (regexp "\\="))
   "Regular expression to use when lookng for the label prefix.
 Group number 1 should be the prefix itself."
   :type 'string
   :group 'company-reftex)
 
 (defcustom company-reftex-citations-regexp
-  "\\\\\\(?:foot\\)?cite[^[{]*\\(?:\\[[^]]*\\]\\)*{\\(?:[^},]*,\\)*\\([^},]*\\)"
+  (rx "\\"
+      (or "cite"
+          "footcite")
+      (* (not (any "[{")))
+      (* (seq "[" (* (not (any "]"))) "]"))
+      "{"
+      (* (seq (* (not (any "},"))) ","))
+      (group (* (not (any "},")))))
   "Regular expression to use when lookng for the citation prefix.
 Group number 1 should be the prefix itself."
   :type 'string
