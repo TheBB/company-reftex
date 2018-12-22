@@ -89,7 +89,6 @@ See `reftex-format-citation'."
           "vpageref"
           "Vref"
           "vref")
-      (or "autoref" "eqref" "ref")
       "{"
       (group (* (not (any "}"))))
       (regexp "\\="))
