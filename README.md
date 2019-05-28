@@ -11,7 +11,7 @@ sure that `reftex-mode` is enabled also.
 These backends should work well together with other LaTeX company backends, for example:
 
 - [company-auctex](https://github.com/alexeyr/company-auctex) (note that `company-reftex` *should*
-  be considerably more powerful chan `company-auctex`'s backends for labels and citations, however
+  be considerably more powerful than `company-auctex`'s backends for labels and citations, however
   `company-auctex` has other backends that may be of interest).
 - [company-math](https://github.com/vspinu/company-math)
 
