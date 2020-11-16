@@ -180,7 +180,9 @@ Obeys the setting of `company-reftex-max-annotation-length'."
   ;; Reftex will ask for a regexp by using `completing-read'
   ;; Override this programatically with a regexp from the prefix
   (cl-letf (((symbol-function 'reftex--query-search-regexps)
-             (lambda (_) (list (regexp-quote prefix)))))
+             (lambda (_) (if (string= prefix "")
+                             (list ".+")
+                           (list (regexp-quote prefix))))))
     (let* ((bibtype (reftex-bib-or-thebib))
            (candidates
             (cond
