@@ -209,7 +209,7 @@ Obeys the setting of `company-reftex-max-annotation-length'."
 For more information on COMMAND and ARG see `company-backends'."
   (interactive (list 'interactive))
   (cl-case command
-    (interactive (company-begin-backend 'company-reftex-labels))
+    (interactive (company-begin-backend 'company-reftex-citations))
     (prefix (company-reftex-prefix company-reftex-citations-regexp))
     (candidates (company-reftex-citation-candidates arg))
     (annotation (when company-reftex-annotate-citations
