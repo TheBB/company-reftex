@@ -226,6 +226,7 @@ For more information on COMMAND and ARG see `company-backends'."
 (defun company-reftex-label-candidates (prefix)
   "Find all label candidates matching PREFIX."
   (reftex-access-scan-info)
+  (reftex-parse-all)
   (cl-loop for entry in (symbol-value reftex-docstruct-symbol)
            if (and (stringp (car entry)) (string-prefix-p prefix (car entry)))
            collect
