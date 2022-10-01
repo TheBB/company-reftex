@@ -71,6 +71,11 @@ See `reftex-format-citation'."
   :type '(choice (const :tag "Off" nil) integer)
   :group 'company-reftex)
 
+(defcustom company-reftex-labels-parse-all t
+  "Whether to rescan labels in entire document."
+  :type 'boolean
+  :group 'company-reftex)
+
 (defcustom company-reftex-labels-regexp
   (rx "\\"
       ;; List taken from `reftex-ref-style-alist'
@@ -225,8 +230,9 @@ For more information on COMMAND and ARG see `company-backends'."
 
 (defun company-reftex-label-candidates (prefix)
   "Find all label candidates matching PREFIX."
-  (reftex-access-scan-info)
-  (reftex-parse-all)
+  (if company-reftex-labels-parse-all
+      (reftex-parse-all)
+    (reftex-parse-one))
   (cl-loop for entry in (symbol-value reftex-docstruct-symbol)
            if (and (stringp (car entry)) (string-prefix-p prefix (car entry)))
            collect
